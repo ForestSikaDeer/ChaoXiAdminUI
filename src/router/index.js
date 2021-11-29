@@ -1,13 +1,13 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from "vue";
+import Router from "vue-router";
 
 // in development-env not use lazy-loading, because lazy-loading too many pages will cause webpack hot update too slow. so only in production use lazy-loading;
 // detail: https://panjiachen.github.io/vue-element-admin-site/#/lazy-loading
 
-Vue.use(Router)
+Vue.use(Router);
 
 /* Layout */
-import Layout from '../views/layout/Layout'
+import Layout from "../views/layout/Layout";
 
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
@@ -22,8 +22,12 @@ import Layout from '../views/layout/Layout'
   }
 **/
 export const constantRouterMap = [
-  { path: '/login', component: () => import('@/views/login/index'), hidden: true },
-  { path: '/404', component: () => import('@/views/404'), hidden: true },
+  {
+    path: "/login",
+    component: () => import("@/views/login/index"),
+    hidden: true
+  },
+  { path: "/404", component: () => import("@/views/404"), hidden: true },
 
   // 组员管理
   // {
@@ -63,137 +67,136 @@ export const constantRouterMap = [
   //   ]
   // },
 
-
   {
-    path: '/crew',
+    path: "/crew",
     component: Layout,
-    redirect: '/crew/CrewTable',
-    name: 'Example',
-    meta: { title: '组员管理', icon: 'CrewManagement' },
+    redirect: "/crew/CrewTable",
+    name: "Example",
+    meta: { title: "组员管理", icon: "CrewManagement" },
     children: [
       {
-        path: 'CrewTable',
-        name: '组员列表',
-        component: () => import('@/views/crew/CrewTable'),
-        meta: { title: '组员列表', icon: 'table' }
+        path: "CrewTable",
+        name: "组员列表",
+        component: () => import("@/views/crew/CrewTable"),
+        meta: { title: "组员列表", icon: "table" }
       },
       {
-        path: 'CrewSave',
-        name: '编辑组员',
-        component: () => import('@/views/crew/CrewSave'),
-        meta: { title: '编辑组员', icon: 'example' },
-        hidden:true
+        path: "CrewSave",
+        name: "编辑组员",
+        component: () => import("@/views/crew/CrewSave"),
+        meta: { title: "编辑组员", icon: "example" },
+        hidden: true
       },
       {
-        path: 'CrewEdit/:id',
-        name: 'CrewEdit',
-        component: () => import('@/views/crew/CrewSave'),
-        meta: { title: '编辑组员', icon: 'tree' },
-        hidden:true
+        path: "CrewEdit/:id",
+        name: "CrewEdit",
+        component: () => import("@/views/crew/CrewSave"),
+        meta: { title: "编辑组员", icon: "tree" },
+        hidden: true
       }
     ]
   },
-// 活动管理
-{
-  path: '/activity',
-  component: Layout,
-  redirect: '/crew/campaign',
-  name: 'Example',
-  meta: { title: '活动管理', icon: 'activity' },
-  children: [
-    {
-      path: 'campaign',
-      name: '参加活动记录',
-      component: () => import('@/views/activity/campaign'),
-      meta: { title: '参加活动记录', icon: 'campaign' }
-    },
-    {
-      path: 'allocation',
-      name: '资源分配记录',
-      component: () => import('@/views/activity/allocation'),
-      meta: { title: '资源分配记录', icon: 'allocation' }
-    },
-    {
-      path: 'match',
-      name: '组内赛记录',
-      component: () => import('@/views/activity/match'),
-      meta: { title: '组内赛记录', icon: 'match' }
-    },
-  ]
-},
-// 公告管理
-{
-  path: '/notice',
-  component: Layout,
-  redirect: '/notice/notice',
-  name: 'Example',
-  children: [
-    {
-      path: 'notice',
-      name: '公告管理',
-      component: () => import('@/views/notice/notice'),
-      meta: { title: '公告管理', icon: 'notice' }
-    },
-  ]
-},
-//角色管理
-{
-  path: '/user',
-  component: Layout,
-  redirect: '/user/user',
-  name: 'Example',
-  children: [
-    {
-      path: 'notice',
-      name: '用户管理',
-      component: () => import('@/views/user/user'),
-      meta: { title: '用户管理', icon: 'useradmin' }
-    },
-  ]
-},
-//监控
-{
-  path: '/monitor',
-  component: Layout,
-  redirect: '/monitor/monitor',
-  name: 'Example',
-  children: [
-    {
-      path: 'monitor',
-      name: '服务监控',
-      component: () => import('@/views/monitor/monitor'),
-      meta: { title: '服务监控', icon: 'monitor' },
-    },
-  ]
-},
-//操作日志
-{
-  path: '/operationLog',
-  component: Layout,
-  redirect: '/log/operationLog',
-  name: 'Example',
-  children: [
-    {
-      path: 'operationLog',
-      name: '操作日志',
-      component: () => import('@/views/log/operationLog'),
-      meta: { title: '操作日志', icon: 'operationLog' },
-    },
-  ]
-},
-
+  // 活动管理
+  {
+    path: "/activity",
+    component: Layout,
+    redirect: "/crew/campaign",
+    name: "Example",
+    meta: { title: "活动管理", icon: "activity" },
+    children: [
+      {
+        path: "campaign",
+        name: "参加活动记录",
+        component: () => import("@/views/activity/campaign"),
+        meta: { title: "参加活动记录", icon: "campaign" }
+      },
+      {
+        path: "allocation",
+        name: "资源分配记录",
+        component: () => import("@/views/activity/allocation"),
+        meta: { title: "资源分配记录", icon: "allocation" }
+      },
+      {
+        path: "match",
+        name: "组内赛记录",
+        component: () => import("@/views/activity/match"),
+        meta: { title: "组内赛记录", icon: "match" }
+      }
+    ]
+  },
+  // 公告管理
+  {
+    path: "/notice",
+    component: Layout,
+    redirect: "/notice/notice",
+    name: "Example",
+    children: [
+      {
+        path: "notice",
+        name: "公告管理",
+        component: () => import("@/views/notice/notice"),
+        meta: { title: "公告管理", icon: "notice" }
+      }
+    ]
+  },
+  //角色管理
+  {
+    path: "/user",
+    component: Layout,
+    redirect: "/user/user",
+    name: "Example",
+    children: [
+      {
+        path: "notice",
+        name: "用户管理",
+        component: () => import("@/views/user/user"),
+        meta: { title: "用户管理", icon: "useradmin" }
+      }
+    ]
+  },
+  //监控
+  {
+    path: "/monitor",
+    component: Layout,
+    redirect: "/monitor/monitor",
+    name: "Example",
+    children: [
+      {
+        path: "monitor",
+        name: "服务监控",
+        component: () => import("@/views/monitor/monitor"),
+        meta: { title: "服务监控", icon: "monitor" }
+      }
+    ]
+  },
+  //操作日志
+  {
+    path: "/operationLog",
+    component: Layout,
+    redirect: "/log/operationLog",
+    name: "Example",
+    children: [
+      {
+        path: "operationLog",
+        name: "操作日志",
+        component: () => import("@/views/log/operationLog"),
+        meta: { title: "操作日志", icon: "operationLog" }
+      }
+    ]
+  },
 
   {
-    path: '/',
+    path: "/",
     component: Layout,
-    redirect: '/dashboard',
-    name: '主页',
+    redirect: "/dashboard",
+    name: "主页",
     hidden: true,
-    children: [{
-      path: 'dashboard',
-      component: () => import('@/views/dashboard/index'),
-      
-    }]
+    children: [
+      {
+        path: "dashboard",
+        component: () => import("@/views/dashboard/index")
+      }
+    ]
   },
 
   // {
@@ -300,11 +303,11 @@ export const constantRouterMap = [
   //   ]
   // },
 
-  { path: '*', redirect: '/404', hidden: true }
-]
+  { path: "*", redirect: "/404", hidden: true }
+];
 
 export default new Router({
   // mode: 'history', //后端支持可开
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
-})
+});

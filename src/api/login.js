@@ -20,9 +20,8 @@ export function getInfo(token) {
 }
 
 export function logout() {
-        return request({
-          url: '/chaoxi/adminSystem/logout',
-          method: 'post'
-        })
-      
+  return request({
+    url: '/chaoxi/adminSystem/logout',
+    method: 'post'
+  })
 }
