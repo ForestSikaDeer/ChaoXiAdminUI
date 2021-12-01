@@ -1,60 +1,65 @@
 <template>
   <div class="login-container">
-    <el-form
-      ref="loginForm"
-      :model="loginForm"
-      class="login-form"
-      auto-complete="on"
-      label-position="left"
-    >
-      <h3 class="title">潮汐领地</h3>
-      <el-form-item prop="username">
-        <span class="svg-container">
-          <svg-icon icon-class="user" />
-        </span>
-        <el-input
-          v-model="loginForm.username"
-          name="username"
-          type="text"
-          auto-complete="on"
-          placeholder="username"
-        />
-      </el-form-item>
-      <el-form-item prop="password">
-        <span class="svg-container">
-          <svg-icon icon-class="password" />
-        </span>
-        <el-input
-          :type="pwdType"
-          v-model="loginForm.password"
-          name="password"
-          auto-complete="on"
-          placeholder="password"
-          @keyup.enter.native="handleLogin"
-        />
-        <span class="show-pwd" @click="showPwd">
-          <svg-icon icon-class="eye" />
-        </span>
-      </el-form-item>
-
-      <el-form-item>
-        <el-button
-          :loading="loading"
-          type="primary"
-          style="width: 100%"
-          @click.native.prevent="handleLogin"
+    <div class="login-content">
+      <el-form
+        ref="loginForm"
+        :model="loginForm"
+        class="login-form"
+        auto-complete="on"
+        label-position="left"
+      >
+        <h3 class="title">潮汐领地</h3>
+        <el-form-item
+          prop="username"
+          :rules="[{ required: true, message: '请输入用户名' }]"
         >
-          登录
-        </el-button>
-      </el-form-item>
-      <!-- <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: admin</span>
-      </div> -->
-    </el-form>
+          <span class="svg-container">
+            <svg-icon icon-class="user" />
+          </span>
+          <el-input
+            v-model="loginForm.username"
+            name="username"
+            type="text"
+            auto-complete="on"
+            placeholder="username"
+          />
+        </el-form-item>
+        <el-form-item
+          prop="password"
+          :rules="[{ required: true, message: '请输入密码' }]"
+        >
+          <span class="svg-container">
+            <svg-icon icon-class="password" />
+          </span>
+          <el-input
+            :type="pwdType"
+            v-model="loginForm.password"
+            name="password"
+            auto-complete="on"
+            placeholder="password"
+            @keyup.enter.native="handleLogin"
+          />
+          <span class="show-pwd" @click="showPwd">
+            <svg-icon icon-class="eye" />
+          </span>
+        </el-form-item>
 
-    <div class="el-login-footer">
-      <span>Copyright © 2021-2022 cxadmin.nat300.top All Rights Reserved.</span>
+        <el-form-item>
+          <el-button
+            :loading="loading"
+            type="primary"
+            @click.native.prevent="handleLogin"
+          >
+            登录
+          </el-button>
+          <el-button @click="resetForm('loginForm')">重置</el-button>
+        </el-form-item>
+      </el-form>
+      <div class="el-login-footer">
+        <span
+          >Copyright © 2021-2022 cxadmin.nat300.top All Rights Reserved.</span
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -81,8 +86,6 @@ export default {
       immediate: true,
     },
   },
-
-
 
   methods: {
     msg() {
@@ -120,12 +123,6 @@ export default {
               this.$router.push({ path: "/" });
             })
             .catch((error) => {
-              // this.$notify({
-              //   title: "错误",
-              //   message: "账户或密码错误，请检查后重试",
-              //   offset: 50,
-              //   type: "error",
-              // });
               this.loginForm.username = "";
               this.loginForm.password = "";
               this.loading = false;
@@ -135,6 +132,9 @@ export default {
           return false;
         }
       });
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
     },
   },
 };
@@ -170,6 +170,12 @@ $light_gray: #000;
     border-radius: 5px;
     color: #454545;
   }
+  .el-form-item:last-child {
+    background: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
 }
 </style>
 
@@ -181,18 +187,24 @@ $light_gray: rgb(238, 238, 238);
   position: fixed;
   height: 100%;
   width: 100%;
+  min-width: 290px;
   background-image: url("../../img/login_bg.jpg");
   background-size: cover;
-  .login-form {
+  .login-content {
     position: absolute;
-    left: 0;
     right: 0;
+    height: 100vh;
     width: 450px;
     max-width: 100%;
-    padding: 25px 35px 15px 35px;
-    margin: 180px auto;
     border-radius: 6px;
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+  }
+  .login-form {
+    width: 80%;
   }
   .tips {
     font-size: 14px;
@@ -237,7 +249,7 @@ $light_gray: rgb(238, 238, 238);
     bottom: 0;
     width: 100%;
     text-align: center;
-    color: #fff;
+    color: #000;
     font-family: Arial;
     font-size: 12px;
     letter-spacing: 1px;
