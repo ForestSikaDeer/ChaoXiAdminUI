@@ -57,7 +57,8 @@
       </el-form>
       <div class="el-login-footer">
         <span
-          >Copyright © 2021-2022 cxadmin.nat300.top All Rights Reserved.</span
+          >Copyright © 2021-{{ new Date().getFullYear() }} cxadmin.nat300.top
+          All Rights Reserved.</span
         >
       </div>
     </div>
