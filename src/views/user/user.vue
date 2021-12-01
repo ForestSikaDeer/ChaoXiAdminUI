@@ -174,7 +174,7 @@ userEnable(id) {
         })
           .then(() => {
             this.UserDisableEmpowerment(id);
-            this.getUserList();
+            // this.getUserList();
           })
           .catch(() => {
             this.getUserList();
@@ -187,7 +187,7 @@ userEnable(id) {
         })
           .then(() => {
             this.UserEmpowerment(id);
-            this.getUserList();
+            // this.getUserList();
           })
           .catch(() => {
             this.getUserList();
@@ -205,7 +205,7 @@ userEnable(id) {
         })
           .then(() => {
             this.userDisable(id);
-            this.getUserList();
+            // this.getUserList();
           })
           .catch(() => {
             this.getUserList();
@@ -218,7 +218,7 @@ userEnable(id) {
         })
           .then(() => {
             this.userEnable(id);
-            this.getUserList();
+            // this.getUserList();
           })
           .catch(() => {
             this.getUserList();
