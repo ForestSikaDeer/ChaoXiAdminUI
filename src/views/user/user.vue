@@ -115,30 +115,39 @@ export default {
   },
   methods: {
     UserEmpowerment(id) {
-      user.UserEmpowerment(id).then((response) => {
-        this.$notify({
-          title: "赋权",
-          message: "赋权成功",
-          offset: 50,
-          type: "success",
+      user
+        .UserEmpowerment(id)
+        .then((response) => {
+          this.$notify({
+            title: "赋权",
+            message: "赋权成功",
+            offset: 50,
+            type: "success",
+          });
+          this.getUserList();
+        })
+        .catch((error) => {
+          this.getUserList();
         });
-        this.getUserList();
-      });
     },
     UserDisableEmpowerment(id) {
-      user.UserDisableEmpowerment(id).then((response) => {
-        this.$notify({
-          title: "禁权",
-          message: "禁权成功",
-          offset: 50,
-          type: "success",
+      user
+        .UserDisableEmpowerment(id)
+        .then((response) => {
+          this.$notify({
+            title: "禁权",
+            message: "禁权成功",
+            offset: 50,
+            type: "success",
+          });
+          this.getUserList();
+        })
+        .catch((error) => {
+          this.getUserList();
         });
-        this.getUserList();
-      });
     },
 
-
-userEnable(id) {
+    userEnable(id) {
       user.userEnable(id).then((response) => {
         this.$notify({
           title: "启用",
@@ -150,20 +159,21 @@ userEnable(id) {
       });
     },
     userDisable(id) {
-      user.userDisable(id).then((response) => {
-        this.$notify({
-          title: "禁用",
-          message: "禁用成功",
-          offset: 50,
-          type: "success",
+      user
+        .userDisable(id)
+        .then((response) => {
+          this.$notify({
+            title: "禁用",
+            message: "禁用成功",
+            offset: 50,
+            type: "success",
+          });
+          this.getUserList();
+        })
+        .catch((error) => {
+          this.getUserList();
         });
-        this.getUserList();
-      });
     },
-
-
-
-
 
     changeSwitch(isRole, id) {
       if (isRole != "1") {
@@ -194,9 +204,7 @@ userEnable(id) {
           });
       }
     },
-
-
-   changeAbleSwitch(isCancel, id) {
+    changeAbleSwitch(isCancel, id) {
       if (isCancel != "1") {
         this.$confirm("确定禁用选中用户吗？", "禁用", {
           confirmButtonText: "确定",
